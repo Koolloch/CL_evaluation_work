@@ -23,5 +23,12 @@ public class AccountPage {
     public void enterAddresses(){
         addresses.click();
     }
+    public boolean checkIfExist(){
+        if (addFirstAddress.isEnabled()){
+            return true;
+        }else {
+            return false;
+        }
+    }
 }
 

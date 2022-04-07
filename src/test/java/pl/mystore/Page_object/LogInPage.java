@@ -4,7 +4,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import pl.mystore.Utility.Web_element_util;
 
 import static pl.mystore.Utility.Web_element_util.setText;
 

@@ -35,7 +35,7 @@ public class AddAddressPage {
         PageFactory.initElements(driver, this);
     }
 
-    public void fillAddressForm(String alias, String address, String city, String postal, String phone) {
+    public void fillAddressForm(String alias, String address, String postal, String city, String phone) {
         setText(alias, aliasField);
         setText(address, address1Field);
         setText(city, cityField);

@@ -30,7 +30,7 @@ public class AddressPage {
         boolean cityTrue = addressString.contains(city);
         boolean postalTrue = addressString.contains(postal);
         boolean phoneTrue = addressString.contains(phone);
-        if (aliasTrue == true && addressTrue == true && cityTrue == true && postalTrue == true && phoneTrue == true){
+        if (aliasTrue && addressTrue && cityTrue && postalTrue && phoneTrue){
             return true;
         }else {
             return false;
@@ -39,6 +39,14 @@ public class AddressPage {
 
     public void deleteAddress(){
         deleteAddress.click();
+    }
+
+    public boolean checkIfExist(){
+        if (addressBox.isEnabled()){
+            return true;
+        }else {
+            return false;
+        }
     }
 
 }

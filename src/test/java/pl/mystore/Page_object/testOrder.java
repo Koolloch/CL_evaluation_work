@@ -1,26 +1,26 @@
 package pl.mystore.Page_object;
 
-import io.cucumber.java.cs.A;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
-public class test {
+public class testOrder {
     private WebDriver driver;
     private HomePage Home_pgae;
     private LogInPage Log_In_page;
     private AccountPage Accont_page;
     private AddAddressPage Add_address_page;
     private AddressPage Address_page;
+    private ClothesPage Clothes_page;
+    private ProductPage Product_page;
+    private CartPage Cart_page;
+    private FinalFormPage Final_form_page;
 
     @BeforeEach
-    public void beforeEach() {
+    public void before() {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
         this.driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(16));
@@ -29,25 +29,30 @@ public class test {
         Accont_page = new AccountPage(driver);
         Add_address_page = new AddAddressPage(driver);
         Address_page = new AddressPage(driver);
-
+        Clothes_page = new ClothesPage(driver);
+        Product_page = new ProductPage(driver);
+        Cart_page = new CartPage(driver);
+        Final_form_page = new FinalFormPage(driver);
     }
 
     @Test
-    public void logInTest() {
+    public void test() {
         this.driver.get("https://mystore-testlab.coderslab.pl/index.php");
         Home_pgae.logIn();
         Log_In_page.logIn("edprfaloqmyoomqaeb@kvhrw.com", "Azrael01");
-        Accont_page.enterAddAddress();
-        Add_address_page.fillAddressForm("alias", "address", "city", "41-500", "505655700");
-        Add_address_page.selectCountry();
-        Add_address_page.saveAddress();
-        Assertions.assertTrue(Address_page.isSucces());
-        Assertions.assertTrue( Address_page.checkIfContain("alias", "address", "city", "41-500", "505655700"));
-        Address_page.deleteAddress();
-        Assertions.assertTrue(Address_page.isSucces());
-
-
-
-//        driver.quit();
+        Home_pgae.eneterClothes();
+        Clothes_page.selectProduct();
+        Product_page.slectSize("M");
+        Product_page.changeQuantity("5");
+        Product_page.addToCart();
+        Product_page.proceedToCheckout();
+        Cart_page.proceedToFinallCheckout();
+        Final_form_page.contiuneWithSelectedAddreess();
+        Final_form_page.continueDelivery();
+        Final_form_page.selectPrestaShop();
+        Final_form_page.selectPayByCheck();
+        Final_form_page.checkTermsAgree();
+        Final_form_page.confirmForm();
+        //takeScreen(driver);
     }
 }
