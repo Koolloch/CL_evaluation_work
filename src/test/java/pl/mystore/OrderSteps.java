@@ -14,6 +14,7 @@ import pl.mystore.Page_object.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.Duration;
 import java.time.LocalDateTime;
@@ -52,14 +53,14 @@ public class OrderSteps {
     @When("^Signs in (.*) (.*) for order$")
     public void userSigin(String user, String password){
         Log_In_page.logIn(user, password);
-        /*
+
         if (Accont_page.checkIfExist()){
             Accont_page.enterAddAddress();
             Add_address_page.fillAddressForm("alias", "address", "city", "41-500", "505655700");
             Add_address_page.selectCountry();
             Add_address_page.saveAddress();
         }
-        */
+
     }
 
     @And("Choose a product")
@@ -112,6 +113,6 @@ public class OrderSteps {
     public void takeScreenShot() throws IOException {
         File tmpScreenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
         String currentDateTime = LocalDateTime.now().toString().replaceAll(":", "_");
-        Files.copy(tmpScreenshot.toPath(), Paths.get("C:/Users/mkolo/Desktop/CL tester automatyczny/zaliczenie/screen", "zadanie2-"+currentDateTime+".png"));
+        Files.createTempFile(Path.of("C:\\Users\\mkolo\\Desktop\\CL tester automatyczny\\zaliczenie\\src"), "test evidenc" +currentDateTime, "jpg");
     }
 }
